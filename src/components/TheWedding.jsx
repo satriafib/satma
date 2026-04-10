@@ -53,8 +53,19 @@ export default function WeddingInvitation() {
   
 
 
-  const profiles = [
-  { id: 'primary',   name: 'You',      avatar: '/Netflix-avatar.png' },];
+  //const profiles = [
+  //{ id: 'primary',   name: 'You',      avatar: '/Netflix-avatar.png' },];
+  //get params from url
+  const [to, setTo] = useState('You');
+
+  useEffect(() => {
+    if (window) {
+      const url = new URL(window.location.href);
+      const to = url.searchParams.get('to');
+      setTo(to ? to : 'You');
+    }
+  }, []);
+
   const [phase, setPhase] = useState('intro'); // intro | profile | main
   const [selectedProfile, setSelectedProfile] = useState(null);
 
@@ -370,11 +381,11 @@ useEffect(() => {
           <h1 className="text-4xl font-semibold text-white mb-12 text-center">Who's Invited ?</h1>
           <div className="w-full flex justify-center">
             <div className={`mb-8 ${
-              profiles.length === 1
+              to.length === 1
                 ? "flex justify-center"
                 : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8"
             }`}>
-              {profiles.map((p) => (
+              {to.map((p) => (
                 <button
                   key={p.id}
                   onClick={() => {
@@ -391,7 +402,7 @@ useEffect(() => {
                     alt={p.name}
                     className="w-24 h-24 rounded-md object-cover"
                   />
-                  <span className="text-xl text-gray-200 font-bold">{p.name}</span>
+                  <span className="text-xl text-gray-200 font-bold">{to}</span>
                 </button>
               ))}
             </div>
