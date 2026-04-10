@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { FaPlay, FaVolumeMute, FaVolumeUp, } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../lib/supabaseClient'; // atau sesuaikan path-nya
-import { badwords } from 'indonesian-badwords';
 
 function CopyRekening({ number }) {
   const [copied, setCopied] = useState(false);
