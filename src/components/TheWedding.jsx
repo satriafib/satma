@@ -208,6 +208,19 @@ const colorList = ['red', '#ffdb58', '#6bc76b', '#48cae4'];
 const WishItem = forwardRef(({ name, message, color }, ref) => (
   <div ref={ref} className="flex gap-2">
     <div>
+      <img
+        width={24}
+        height={24}
+        src="/face.png"
+        style={{
+          backgroundColor: color,
+          minWidth: 24,
+          minHeight: 24,
+        }}
+        className=" rounded-sm"
+      />
+    </div>
+    <div>
       <p className="text-white text-md -mt-1">{name}</p>
       <p className="text-xs text-[#A3A1A1]">{message}</p>
     </div>
@@ -1106,8 +1119,9 @@ useEffect(() => {
           <WishItem
             name={item.name}
             message={item.message}
+            color={item.color}
             key={index}
-            ref={index === data.length - 1 ? lastChildRef : null}
+            ref={index === wishes.length - 1 ? lastChildRef : null}
           />
         ))}
   </div>
