@@ -720,48 +720,6 @@ useEffect(() => {
         </motion.p>
       </motion.div>
     </div>
-    {/* Note Section */}
-    <motion.div
-      className="mt-10 text-center"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: false }}
-    >
-      <ul className="flex justify-center items-center space-x-4 text-lg font-mono">
-    <li className="text-center">
-      <span className="block text-2xl font-bold text-red-500">{timeLeft.days}</span>
-      <p className="text-sm text-white/80">Hari</p>
-    </li>
-    <li className="text-center">
-      <span className="block text-2xl font-bold text-red-500">:</span>
-    </li>
-    <li className="text-center">
-      <span className="block text-2xl font-bold text-red-500">{timeLeft.hours}</span>
-      <p className="text-sm text-white/80">Jam</p>
-    </li>
-    <li className="text-center">
-      <span className="block text-2xl font-bold text-red-500">:</span>
-    </li>
-    <li className="text-center">
-      <span className="block text-2xl font-bold text-red-500">{timeLeft.minutes}</span>
-      <p className="text-sm text-white/80">Menit</p>
-    </li>
-    <li className="text-center">
-      <span className="block text-2xl font-bold text-red-500">:</span>
-    </li>
-    <li className="text-center">
-      <span className="block text-2xl font-bold text-red-500">{timeLeft.seconds}</span>
-      <p className="text-sm text-white/80">Detik</p>
-    </li>
-  </ul>
-  <div className="mt-4">
-    {/* Opsional: Pesan jika waktu habis */}
-    {timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0 && (
-      <p className="text-red-500 font-semibold">Waktu telah tiba! Selamat menikah! 🎉</p>
-    )}
-  </div>
-    </motion.div>
   </motion.div>
 </section>
 
