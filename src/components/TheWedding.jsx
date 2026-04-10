@@ -183,8 +183,8 @@ useEffect(() => {
 const handleSubmitWish = async () => {
   const randomColor = colorList[wishes.length % colorList.length];
   const newWish = {
-    name: guestName,
-    message: wishInput,
+    name: guestName.trim(),
+    message: wishInput.trim(),
     color: randomColor,
   };
 
@@ -207,19 +207,6 @@ const lastChildRef = useRef(null);
 const colorList = ['red', '#ffdb58', '#6bc76b', '#48cae4'];
 const WishItem = forwardRef(({ name, message, color }, ref) => (
   <div ref={ref} className="flex gap-2">
-    <div>
-      <img
-        width={24}
-        height={24}
-        src="/face.png"
-        style={{
-          backgroundColor: color,
-          minWidth: 24,
-          minHeight: 24,
-        }}
-        className=" rounded-sm"
-      />
-    </div>
     <div>
       <p className="text-white text-md -mt-1">{name}</p>
       <p className="text-xs text-[#A3A1A1]">{message}</p>
