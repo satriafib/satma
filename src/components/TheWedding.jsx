@@ -210,7 +210,7 @@ const WishItem = forwardRef(({ name, message, color }, ref) => (
       <img
         width={24}
         height={24}
-        src="images/face.png"
+        src="/face.png"
         style={{
           backgroundColor: color,
           minWidth: 24,
