@@ -183,8 +183,8 @@ useEffect(() => {
 const handleSubmitWish = async () => {
   const randomColor = colorList[wishes.length % colorList.length];
   const newWish = {
-    name: guestName.trim(),
-    message: wishInput.trim(),
+    name: guestName,
+    message: wishInput,
     color: randomColor,
   };
 
