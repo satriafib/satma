@@ -203,6 +203,7 @@ const handleSubmitWish = async () => {
 };
 
 // Fetch wishes awal
+const lastChildRef = useRef(null);
 const colorList = ['red', '#ffdb58', '#6bc76b', '#48cae4'];
 const WishItem = forwardRef(({ name, message, color }, ref) => (
   <div ref={ref} className="flex gap-2">
