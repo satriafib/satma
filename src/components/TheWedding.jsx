@@ -206,7 +206,7 @@ const handleSubmitWish = async () => {
 const lastChildRef = useRef(null);
 const colorList = ['red', '#ffdb58', '#6bc76b', '#48cae4'];
 const WishItem = forwardRef(({ name, message, color }, ref) => (
-  <div ref={ref} className="flex gap-2">
+  <div ref={ref} className="flex gap-2 items-start">
     <div>
       <img
         width={24}
@@ -220,7 +220,7 @@ const WishItem = forwardRef(({ name, message, color }, ref) => (
         className=" rounded-sm"
       />
     </div>
-    <div>
+    <div className="text-left">
       <p className="text-white text-md -mt-1">{name}</p>
       <p className="text-xs text-[#A3A1A1]">{message}</p>
     </div>
@@ -240,21 +240,7 @@ useEffect(() => {
 }, []);
 
 
-// Realtime update (opsional)
-useEffect(() => {
-  const channel = supabase
-    .channel('realtime-wishes')
-    .on('postgres_changes', {
-      event: 'INSERT',
-      schema: 'public',
-      table: 'wishes',
-    }, (payload) => {
-      setWishes((prev) => [payload.new, ...prev]);
-    })
-    .subscribe();
 
-  return () => supabase.removeChannel(channel);
-}, []);
 
 const [timeLeft, setTimeLeft] = useState({
   days: 0,
@@ -713,7 +699,7 @@ useEffect(() => {
           transition={{ delay: 0.4, duration: 0.8 }}
           viewport={{ once: false }}
         >
-          08:00 - 09:00 WIB
+          Ahad, 7 Juni 2026 | 08:00 - 09:00 WIB
         </motion.p>
       </motion.div>
 
@@ -726,7 +712,7 @@ useEffect(() => {
         viewport={{ once: false }}
       >
         <motion.h4
-          className="text-lg md:text-xl font-semibold mt-4"
+          className="text-lg md:text-xl font-bold mt-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
@@ -741,7 +727,7 @@ useEffect(() => {
           transition={{ delay: 0.6, duration: 0.8 }}
           viewport={{ once: false }}
         >
-          11.00 - 13.00 WIB
+          Ahad, 7 Juni 2026 | 11.00 - 13.00 WIB
         </motion.p>
       </motion.div>
     </div>
