@@ -181,7 +181,7 @@ useEffect(() => {
     
 // Saat Kirim Ucapan
 const handleSubmitWish = async () => {
-  const randomColor = colorList[data.length % colorList.length];
+  const randomColor = colorList[wishes.length % colorList.length];
   const newWish = {
     name: guestName.trim(),
     message: wishInput.trim(),
