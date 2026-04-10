@@ -65,7 +65,7 @@ export default function WeddingInvitation() {
       setTo(to ? to : 'You');
     }
   }, []);
-
+  
   const [phase, setPhase] = useState('intro'); // intro | profile | main
   const [selectedProfile, setSelectedProfile] = useState(null);
 
@@ -96,7 +96,7 @@ useEffect(() => {
     const timer = setTimeout(() => {
       setShowIntro(false);
       setPhase('profile');  // langsung ke profile scene!
-    }, 3500);
+    }, 2500);
     return () => clearTimeout(timer);
   }
 }, [showIntro]);
@@ -398,8 +398,8 @@ useEffect(() => {
                   `}
                 >
                   <img
-                    src={p.avatar}
-                    alt={p.name}
+                    src="/Netflix-avatar.png"
+                    alt={to}
                     className="w-24 h-24 rounded-md object-cover"
                   />
                   <span className="text-xl text-gray-200 font-bold">{to}</span>
