@@ -1106,7 +1106,6 @@ useEffect(() => {
           <WishItem
             name={item.name}
             message={item.message}
-            color={item.color}
             key={index}
             ref={index === data.length - 1 ? lastChildRef : null}
           />
