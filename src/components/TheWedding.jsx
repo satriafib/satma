@@ -206,7 +206,7 @@ const handleSubmitWish = async () => {
 const lastChildRef = useRef(null);
 const colorList = ['red', '#ffdb58', '#6bc76b', '#48cae4'];
 const WishItem = forwardRef(({ name, message, color }, ref) => (
-  <div ref={ref} className="bg-gray-800 px-4 py-3 rounded-lg border border-gray-700">
+  <div ref={ref} className="flex gap-2">
     <div>
       <img
         width={24}
@@ -1114,7 +1114,7 @@ useEffect(() => {
 
  {/* Recent Wishes */}
 <div className="mt-10 max-w-2xl mx-auto">
-  <div className="max-h-96 overflow-y-scroll pr-2 space-y-4 ">
+  <div className="max-h-[20rem] overflow-auto space-y-4 wish-container scrollbar-hide">
     {wishes.map((item, index) => (
           <WishItem
             name={item.name}
