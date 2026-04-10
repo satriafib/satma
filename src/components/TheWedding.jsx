@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, forwardRef } from 'react';
 import { FaPlay, FaVolumeMute, FaVolumeUp, } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../lib/supabaseClient'; // atau sesuaikan path-nya
+import { badwords } from 'indonesian-badwords';
 
 function CopyRekening({ number }) {
   const [copied, setCopied] = useState(false);
@@ -180,7 +181,26 @@ useEffect(() => {
 
     
 // Saat Kirim Ucapan
-const handleSubmitWish = async () => {
+const handleSubmitWish = async (e) => {
+  e.preventDefault();
+
+    if (guestName.length < 3) {
+      setError('Nama minimal 3 karakter!');
+      return;
+    }
+
+    if (wishInput.length < 10) {
+      setError('Pesan minimal 10 karakter!');
+      return;
+    }
+
+    if (badwords.flag(guestName) || badwords.flag(wishInput)) {
+      setError('Gabolah kata kasar!');
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
   const randomColor = colorList[wishes.length % colorList.length];
   const newWish = {
     name: guestName.trim(),
@@ -240,7 +260,21 @@ useEffect(() => {
 }, []);
 
 
+// Realtime update (opsional)
+useEffect(() => {
+  const channel = supabase
+    .channel('realtime-wishes')
+    .on('postgres_changes', {
+      event: 'INSERT',
+      schema: 'public',
+      table: 'wishes',
+    }, (payload) => {
+      setWishes((prev) => [payload.new, ...prev]);
+    })
+    .subscribe();
 
+  return () => supabase.removeChannel(channel);
+}, []);
 
 const [timeLeft, setTimeLeft] = useState({
   days: 0,
@@ -699,7 +733,8 @@ useEffect(() => {
           transition={{ delay: 0.4, duration: 0.8 }}
           viewport={{ once: false }}
         >
-          Ahad, 7 Juni 2026 | 08:00 - 09:00 WIB
+          Ahad, 7 Juni 2026 <br/>
+          08:00 - 09:00 WIB
         </motion.p>
       </motion.div>
 
@@ -727,7 +762,8 @@ useEffect(() => {
           transition={{ delay: 0.6, duration: 0.8 }}
           viewport={{ once: false }}
         >
-          Ahad, 7 Juni 2026 | 11.00 - 13.00 WIB
+          Ahad, 7 Juni 2026 <br/>
+          11.00 - 13.00 WIB
         </motion.p>
       </motion.div>
     </div>
