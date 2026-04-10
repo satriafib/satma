@@ -206,7 +206,7 @@ const handleSubmitWish = async () => {
 const lastChildRef = useRef(null);
 const colorList = ['red', '#ffdb58', '#6bc76b', '#48cae4'];
 const WishItem = forwardRef(({ name, message, color }, ref) => (
-  <div ref={ref} className="flex gap-2">
+  <div ref={ref} className="bg-gray-800 px-4 py-3 rounded-lg border border-gray-700">
     <div>
       <img
         width={24}
