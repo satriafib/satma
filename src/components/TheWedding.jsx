@@ -230,6 +230,44 @@ useEffect(() => {
   return () => supabase.removeChannel(channel);
 }, []);
 
+const [timeLeft, setTimeLeft] = useState({
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+});
+
+useEffect(() => {
+  // Tentukan tanggal target: Ganti dengan tanggal pernikahan Anda
+  const targetDate = new Date('2026-06-07T08:00:00+07:00'); // Contoh: Akad pukul 08:00 WIB, 7 Juni 2026
+
+  const updateCountdown = () => {
+    const now = new Date();
+    const difference = targetDate - now; // Selisih dalam milidetik
+
+    if (difference > 0) {
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      setTimeLeft({ days, hours, minutes, seconds });
+    } else {
+      // Jika waktu habis, set ke 0
+      setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+    }
+  };
+
+  // Jalankan pertama kali
+  updateCountdown();
+
+  // Set interval untuk update setiap detik
+  const interval = setInterval(updateCountdown, 1000);
+
+  // Cleanup interval saat komponen unmount
+  return () => clearInterval(interval);
+}, []); // Dependency array kosong agar hanya jalankan sekali
+
 // Ambil semua wish saat pertama load
 // useEffect(() => {
 //   const fetchWishes = async () => {
@@ -682,6 +720,47 @@ useEffect(() => {
         </motion.p>
       </motion.div>
     </div>
+    <motion.div
+  className="mt-10 text-center"
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: false }}
+>
+  <ul className="flex justify-center items-center space-x-4 text-lg font-mono">
+    <li className="text-center">
+      <span className="block text-2xl font-bold text-red-500">{timeLeft.days}</span>
+      <p className="text-sm text-white/80">Hari</p>
+    </li>
+    <li className="text-center">
+      <span className="block text-2xl font-bold text-red-500">:</span>
+    </li>
+    <li className="text-center">
+      <span className="block text-2xl font-bold text-red-500">{timeLeft.hours}</span>
+      <p className="text-sm text-white/80">Jam</p>
+    </li>
+    <li className="text-center">
+      <span className="block text-2xl font-bold text-red-500">:</span>
+    </li>
+    <li className="text-center">
+      <span className="block text-2xl font-bold text-red-500">{timeLeft.minutes}</span>
+      <p className="text-sm text-white/80">Menit</p>
+    </li>
+    <li className="text-center">
+      <span className="block text-2xl font-bold text-red-500">:</span>
+    </li>
+    <li className="text-center">
+      <span className="block text-2xl font-bold text-red-500">{timeLeft.seconds}</span>
+      <p className="text-sm text-white/80">Detik</p>
+    </li>
+  </ul>
+  <div className="mt-4">
+    {/* Opsional: Pesan jika waktu habis */}
+    {timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0 && (
+      <p className="text-red-500 font-semibold">Waktu telah tiba! Selamat menikah! 🎉</p>
+    )}
+  </div>
+</motion.div>
   </motion.div>
 </section>
 
@@ -1094,7 +1173,7 @@ useEffect(() => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.5 }}
             >
-              NIKAHFIX
+              FIXRABI
             </motion.h1>
             <audio
               ref={audioRefIntro}
