@@ -105,44 +105,6 @@ useEffect(() => {
   }
 }, [phase]);
 
-const [timeLeft, setTimeLeft] = useState({
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-    });
-
-    useEffect(() => {
-      // Tanggal target: Sesuaikan dengan tanggal pernikahan Anda (format: YYYY-MM-DDTHH:MM:SS)
-      // Contoh: 07 Juni 2026 pukul 08:00 WIB (sesuai dengan kode lama, tapi update ke 2026)
-      const targetDate = new Date('2026-06-07T08:00:00+07:00'); // +07:00 untuk WIB
-
-      const updateCountdown = () => {
-        const now = new Date();
-        const difference = targetDate - now;
-
-        if (difference > 0) {
-          const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-          setTimeLeft({ days, hours, minutes, seconds });
-        } else {
-          // Jika waktu sudah habis, set ke 0
-          setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        }
-      };
-
-      // Update pertama kali
-      updateCountdown();
-
-      // Set interval untuk update setiap detik
-      const interval = setInterval(updateCountdown, 1000);
-
-      // Cleanup interval saat komponen unmount
-      return () => clearInterval(interval);
-    }, []); // Dependency array kosong agar hanya jalankan sekali
 //   // Play audio on intro
 //  useEffect(() => {
 //   if (showIntro && audioRef.current) {
