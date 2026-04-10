@@ -53,8 +53,8 @@ export default function WeddingInvitation() {
   
 
 
-  //const profiles = [
-  //{ id: 'primary',   name: 'You',      avatar: '/Netflix-avatar.png' },];
+  const profiles = [
+  { id: 'primary',   name: 'You',      avatar: '/Netflix-avatar.png' },];
   //get params from url
   const [to, setTo] = useState('You');
 
@@ -381,11 +381,11 @@ useEffect(() => {
           <h1 className="text-4xl font-semibold text-white mb-12 text-center">Who's Invited ?</h1>
           <div className="w-full flex justify-center">
             <div className={`mb-8 ${
-              to.length === 1
+              profiles.length === 1
                 ? "flex justify-center"
                 : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8"
             }`}>
-              {to.map((p) => (
+              {profiles.map((p) => (
                 <button
                   key={p.id}
                   onClick={() => {
