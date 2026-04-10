@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, forwardRef } from 'react';
 import { FaPlay, FaVolumeMute, FaVolumeUp, } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../lib/supabaseClient'; // atau sesuaikan path-nya
-import { badwords } from 'indonesian-badwords';
 
 function CopyRekening({ number }) {
   const [copied, setCopied] = useState(false);
@@ -181,26 +180,7 @@ useEffect(() => {
 
     
 // Saat Kirim Ucapan
-const handleSubmitWish = async (e) => {
-  e.preventDefault();
-
-    if (guestName.length < 3) {
-      setError('Nama minimal 3 karakter!');
-      return;
-    }
-
-    if (wishInput.length < 10) {
-      setError('Pesan minimal 10 karakter!');
-      return;
-    }
-
-    if (badwords.flag(guestName) || badwords.flag(wishInput)) {
-      setError('Gabolah kata kasar!');
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
+const handleSubmitWish = async () => {
   const randomColor = colorList[wishes.length % colorList.length];
   const newWish = {
     name: guestName.trim(),
@@ -733,7 +713,7 @@ useEffect(() => {
           transition={{ delay: 0.4, duration: 0.8 }}
           viewport={{ once: false }}
         >
-          Ahad, 7 Juni 2026 <br/>
+          Ahad, 7 Juni 2026 <br />
           08:00 - 09:00 WIB
         </motion.p>
       </motion.div>
