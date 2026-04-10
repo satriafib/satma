@@ -181,9 +181,11 @@ useEffect(() => {
     
 // Saat Kirim Ucapan
 const handleSubmitWish = async () => {
+  const randomColor = colorList[data.length % colorList.length];
   const newWish = {
     name: guestName.trim(),
     message: wishInput.trim(),
+    color: randomColor,
   };
 
   const { data, error } = await supabase
@@ -201,6 +203,29 @@ const handleSubmitWish = async () => {
 };
 
 // Fetch wishes awal
+const colorList = ['red', '#ffdb58', '#6bc76b', '#48cae4'];
+const WishItem = forwardRef(({ name, message, color }, ref) => (
+  <div ref={ref} className="flex gap-2">
+    <div>
+      <img
+        width={24}
+        height={24}
+        src="images/face.png"
+        style={{
+          backgroundColor: color,
+          minWidth: 24,
+          minHeight: 24,
+        }}
+        className=" rounded-sm"
+      />
+    </div>
+    <div>
+      <p className="text-white text-md -mt-1">{name}</p>
+      <p className="text-xs text-[#A3A1A1]">{message}</p>
+    </div>
+  </div>
+));
+
 useEffect(() => {
   const fetchWishes = async () => {
     const { data, error } = await supabase
@@ -221,7 +246,7 @@ useEffect(() => {
     .on('postgres_changes', {
       event: 'INSERT',
       schema: 'public',
-      table: 'nikahfix',
+      table: 'wishes',
     }, (payload) => {
       setWishes((prev) => [payload.new, ...prev]);
     })
@@ -1089,17 +1114,15 @@ useEffect(() => {
  {/* Recent Wishes */}
 <div className="mt-10 max-w-2xl mx-auto">
   <div className="max-h-96 overflow-y-scroll pr-2 space-y-4 ">
-    {wishes.map((wish, i) => (
-      <div
-        key={i}
-        className="bg-gray-800 px-4 py-3 rounded-lg border border-gray-700"
-      >
-        <p className="text-sm text-gray-300">
-          Dari: <span className="font-semibold text-white">{wish.name}</span>
-        </p>
-        <p className="mt-1 text-base text-white italic">“{wish.message}”</p>
-      </div>
-    ))}
+    {wishes.map((item, index) => (
+          <WishItem
+            name={item.name}
+            message={item.message}
+            color={item.color}
+            key={index}
+            ref={index === data.length - 1 ? lastChildRef : null}
+          />
+        ))}
   </div>
 </div>
 
