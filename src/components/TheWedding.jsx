@@ -221,7 +221,7 @@ useEffect(() => {
     .on('postgres_changes', {
       event: 'INSERT',
       schema: 'public',
-      table: 'wishes',
+      table: 'nikahfix',
     }, (payload) => {
       setWishes((prev) => [payload.new, ...prev]);
     })
@@ -512,12 +512,11 @@ useEffect(() => {
       </div>
 
       <p className="text-sm md:text-base text-white/80">
-        Dengan kuasa Allah SWT., Risma dan Satria dipertemukan dalam situasi yang tepat. Arus membawa mereka ke jenjang yang lebih serius ketika keduanya bertekat untuk saling mengikat, menyempurnakan separuh agama.
-
+        "Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah)"
       </p>
 
       <p className="text-xs italic text-white/50 border-t border-white/10 pt-2">
-        "Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah)" – (Q.S Az-Zariyat: 49)
+        Q.S Az-Zariyat: 49
       </p>
     </motion.div>
   </motion.div>
@@ -1028,7 +1027,7 @@ useEffect(() => {
   </motion.div>
 </section>
 
-{/* section 8 */}
+{/* section 8 
 <section className="bg-black text-white py-16 px-6 md:px-20">
   <motion.div
     className="max-w-xl mx-auto text-center"
@@ -1050,11 +1049,11 @@ useEffect(() => {
       Konfirmasi Kehadiran
     </button>
   </motion.div>
-</section>
+</section>*/}
 
 {/* section 10 Form Ucapan & Daftar Wishes */}
 <section className="bg-black px-6 py-10 text-white text-center">
-  <h3 className="text-2xl font-bold mb-6">Wish For The Couple </h3>
+  <h3 className="text-2xl md:text-3xl font-bold mb-6">Wish For The Couple 💌</h3>
   <form
     onSubmit={(e) => {
       e.preventDefault();
@@ -1124,14 +1123,9 @@ useEffect(() => {
     transition={{ duration: 1 }}
     viewport={{ once: true }}
   >
-    <h3 className="text-2xl md:text-3xl font-bold mb-6">Sampai Jumpa di Hari Bahagia Kami 🌟</h3>
     <p className="text-sm md:text-base text-white/90 leading-relaxed">
       Terima kasih telah menjadi bagian dari cerita cinta kami. <br />
       Dengan penuh rasa syukur, kami menantikan kehadiranmu di hari yang sangat berarti ini.
-    </p>
-    <p className="mt-6 italic text-xs text-white/60">
-      “Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu…” <br />
-      – (Q.S. Ar-Rum: 21)
     </p>
   </motion.div>
 </section>
