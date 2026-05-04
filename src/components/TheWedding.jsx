@@ -300,7 +300,13 @@ useEffect(() => {
       schema: 'public',
       table: 'wishes',
     }, (payload) => {
-      setWishes((prev) => [payload.new, ...prev]);
+      setWishes((prev) => {
+        // Hindari duplikasi berdasarkan id
+        if (prev.some(wish => wish.id === payload.new.id)) {
+          return prev;
+        }
+        return [payload.new, ...prev];
+      });
     })
     .subscribe();
 
@@ -765,7 +771,7 @@ useEffect(() => {
           viewport={{ once: false }}
         >
           Ahad, 7 Juni 2026 <br />
-          08:00 - 09:00 WIB
+          09:00 - 10:00 WIB
         </motion.p>
       </motion.div>
 
@@ -794,7 +800,7 @@ useEffect(() => {
           viewport={{ once: false }}
         >
           Ahad, 7 Juni 2026 <br/>
-          11.00 - 13.00 WIB
+          12.30 - 13.30 WIB
         </motion.p>
       </motion.div>
     </div>
@@ -941,8 +947,11 @@ useEffect(() => {
         {
           title: "Episode 2: Kencan Pertama",
           image: "/eps2.jpg",
-          description:
-            "Perjalanan panjang saling mengenal. Melalui musim hujan, kemarau, ~rambutan, durian~. Macam macam. Nano-nano. Seru...",
+          description: (
+            <>
+              Perjalanan panjang saling mengenal. Melalui musim hujan, kemarau, <s>rambutan, durian</s>. Macam macam. Nano-nano. Seru...
+            </>
+          ),
           badge: "Eps 2",
           badgeColor: "bg-blue-600",
         },
@@ -1246,7 +1255,7 @@ useEffect(() => {
             name={item.name}
             message={item.message}
             color={item.color}
-            key={index}
+            key={item.id || `wish-${index}`}
             ref={index === wishes.length - 1 ? lastChildRef : null}
           />
         ))}
