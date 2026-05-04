@@ -305,6 +305,39 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []); // Dependency array kosong agar hanya jalankan sekali
 
+//Galeri Gambar
+const galleryItems = [
+  { img: '/pre1.jpg', title: '1'},
+  { img: '/pre2.jpg', title: '2'},
+  { img: '/pre3.jpg', title: '3'},
+  { img: '/pre4.jpg', title: '4'},
+  { img: '/pre5.jpg', title: '5'},
+  { img: '/pre6.jpg', title: '6'},
+  { img: '/pre7.jpg', title: '7'},
+  { img: '/pre8.jpg', title: '8'},
+  { img: '/pre9.jpg', title: '9'},
+  { img: '/pre10.jpg', title: '10'},
+];
+
+const [galleryOpen, setGalleryOpen] = useState(false);
+const [currentIndex, setCurrentIndex] = useState(0);
+
+const openGallery = (index) => {
+  setCurrentIndex(index);
+  setGalleryOpen(true);
+};
+
+const closeGallery = () => setGalleryOpen(false);
+
+const prevImage = () => {
+  setCurrentIndex((prev) => (prev - 1 + galleryItems.length) % galleryItems.length);
+};
+
+const nextImage = () => {
+  setCurrentIndex((prev) => (prev + 1) % galleryItems.length);
+};
+
+
 // Ambil semua wish saat pertama load
 // useEffect(() => {
 //   const fetchWishes = async () => {
@@ -1024,6 +1057,7 @@ useEffect(() => {
       ].map((item, idx) => (
         <motion.div
           key={idx}
+          onClick={() => openGallery(idx)}
           className="relative rounded-xl overflow-hidden shadow-xl group cursor-pointer bg-zinc-900/40 backdrop-blur-md perspective-1000"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1066,6 +1100,46 @@ useEffect(() => {
   </motion.div>
 </section>
 
+<AnimatePresence>
+  {galleryOpen && (
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div className="relative max-w-5xl w-full">
+        <button
+          onClick={closeGallery}
+          className="absolute top-4 right-4 text-white text-2xl"
+        >
+          ×
+        </button>
+
+        <img
+          src={galleryItems[currentIndex].img}
+          alt={galleryItems[currentIndex].title}
+          className="w-full max-h-[80vh] object-contain rounded-xl"
+        />
+
+        <div className="mt-4 flex justify-between gap-4">
+          <button
+            onClick={prevImage}
+            className="rounded-full bg-white/10 px-4 py-2 text-white hover:bg-white/20"
+          >
+            Previous
+          </button>
+          <button
+            onClick={nextImage}
+            className="rounded-full bg-white/10 px-4 py-2 text-white hover:bg-white/20"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
 {/* section 8 
 <section className="bg-black text-white py-16 px-6 md:px-20">
   <motion.div
@@ -1166,18 +1240,7 @@ useEffect(() => {
     </p>
   </motion.div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
+      
         {showIntro && (
           <motion.div
             key="intro"
