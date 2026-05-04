@@ -1011,16 +1011,16 @@ useEffect(() => {
 
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
       {[
-        { img: '/AdaApaDengan Cinta.png', badge: 'Eksklusif', badgeColor: 'bg-red-500' },
-        { img: '/CrashLandingOnYou.png', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
-        { img: '/DDThe Explorer.png', badge: 'Top 10', badgeColor: 'bg-red-500' },
-        { img: '/DuaLatarBiru.png', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
-        { img: '/KeluargaCemara.png', badge: 'Our Favorite', badgeColor: 'bg-red-500' },
-        { img: '/LaLaLand.png', badge: 'Eksklusif 10', badgeColor: 'bg-red-500' },
-        { img: '/NantiKitaCeritaTentangHariIni.png', badge: 'Top 5', badgeColor: 'bg-red-500' },
-        { img: '/PernikahanDini.png', badge: 'Top 3', badgeColor: 'bg-red-700' },
-        { img: '/ReadyOrNot.png', badge: 'Top 2', badgeColor: 'bg-pink-700' },
-        { img: '/WhenLifeGivesYouTangerines.png', badge: 'Top 1', badgeColor: 'bg-pink-500' },
+        { img: '/pre1.jpg', badge: 'Eksklusif', badgeColor: 'bg-red-500' },
+        { img: '/pre2.jpg', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
+        { img: '/pre3.jpg', badge: 'Top 10', badgeColor: 'bg-red-500' },
+        { img: '/pre4.jpg', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
+        { img: '/pre5.jpg', badge: 'Our Favorite', badgeColor: 'bg-red-500' },
+        { img: '/pre6.jpg', badge: 'Eksklusif 10', badgeColor: 'bg-red-500' },
+        { img: '/pre7.jpg', badge: 'Top 5', badgeColor: 'bg-red-500' },
+        { img: '/pre8.jpg', badge: 'Top 3', badgeColor: 'bg-red-700' },
+        { img: '/pre9.jpg', badge: 'Top 2', badgeColor: 'bg-pink-700' },
+        { img: '/pre10.jpg', badge: 'Top 1', badgeColor: 'bg-pink-500' },
       ].map((item, idx) => (
         <motion.div
           key={idx}
