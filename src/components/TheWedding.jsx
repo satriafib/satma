@@ -527,9 +527,9 @@ useEffect(() => {
 
     {/* Tagar */}
     <div className="flex gap-2 mt-4 flex-wrap justify-start md:justify-start text-xs md:text-sm text-white/80 lg:-ml-8">
-      {['#Romantic', '#Getmarried', '#Family', '#Documenter'].map((tag, idx) => (
+      {['#Romantic', '#Getmarried', '#Family', '#Documenter'].map((tag) => (
         <span
-          key={idx}
+          key={tag}
           className="bg-gray-600 px-3 py-1 rounded-full border border-white/20 backdrop-blur-sm font-semibold"
         >
           {tag}
@@ -973,7 +973,7 @@ useEffect(() => {
         },
       ].map((episode, idx) => (
         <motion.div
-          key={idx}
+          key={episode.title}
           className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gradient-to-br from-zinc-900 to-gray-800 p-4 rounded-2xl shadow-2xl ring-1 ring-white/10 md:bg-transparent md:p-0 md:shadow-none md:ring-0"
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1061,7 +1061,7 @@ useEffect(() => {
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
       {favoriteMoments.map((item, idx) => (
         <motion.div
-          key={idx}
+          key={item.img || `favorite-${idx}`}
           onClick={() => openLightbox(idx)}
           className="relative rounded-xl overflow-hidden shadow-xl group cursor-pointer bg-zinc-900/40 backdrop-blur-md perspective-1000"
           initial={{ opacity: 0, y: 40 }}
@@ -1255,7 +1255,7 @@ useEffect(() => {
             name={item.name}
             message={item.message}
             color={item.color}
-            key={item.id || `wish-${index}`}
+            key={item.id ?? `wish-${index}`}
             ref={index === wishes.length - 1 ? lastChildRef : null}
           />
         ))}
@@ -1310,7 +1310,7 @@ useEffect(() => {
           >
             {[...Array(40)].map((_, i) => (
               <div
-                key={i}
+                key={`intro-star-${i}`}
                 className="absolute w-1 h-1 bg-white rounded-full opacity-30 blur-sm animate-float"
                 style={{
                   top: `${Math.random() * 100}%`,
