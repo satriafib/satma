@@ -934,7 +934,7 @@ useEffect(() => {
           title: "Episode 1: Pertemuan Pertama",
           image: "/eps1.jpg",
           description:
-            "Ditengah kejenuhan menghadapi rutinitas, Satria dan Risma dipertemukan dalam situasi dan waktu tak terduga...",
+            "Ketika semesta mempertemukan Risma dan Satria. Pada percakapan canggung yang seiring waktu berulang, menyenangkan...",
           badge: "Eps 1",
           badgeColor: "bg-red-600",
         },
@@ -942,7 +942,7 @@ useEffect(() => {
           title: "Episode 2: Kencan Pertama",
           image: "/eps2.jpg",
           description:
-            "Setelah proses perkenalan lebih dalam, keberanian Satria mengajak Risma berkencan membuahkan hasil manis...",
+            "Perjalanan panjang saling mengenal. Melalui musim hujan, kemarau, ~rambutan, durian~. Macam macam. Nano-nano. Seru...",
           badge: "Eps 2",
           badgeColor: "bg-blue-600",
         },
@@ -950,17 +950,17 @@ useEffect(() => {
           title: "Episode 3: Restu Keluarga",
           image: "/eps3.jpg",
           description:
-            "Setelah perjalanan selama dua tahun, Satria dan Risma memberanikan diri untuk berkenalan kepada orangtua...",
+            "2024 menjadi saksi Risma dan Satria mengikat hubungan di depan kedua keluarga. Menapak satu lagi anak tangga...",
           badge: "Eps 3",
-          badgeColor: "bg-green-600",
+          badgeColor: "bg-yellow-600",
         },
         {
           title: "Episode 4: The End of Beginning",
           image: "/eps4.jpg",
           description:
-            "Genap empat tahun penantian, akhirnya kapal mereka mulai berlayar, dipenuhi dengan dukungan dan doa...",
+            "berSaMa. Doa restu keluarga serta orang-orang terkasih membawa Risma dan Satria menuju ikatan suci pernikahan. Berjalan hingga berlari bersama. Doakan kami selalu dalam pernikahan yang sakinah mawaddah warahmah...",
           badge: "Eps 4",
-          badgeColor: "bg-yellow-600",
+          badgeColor: "bg-green-600",
         },
       ].map((episode, idx) => (
         <motion.div
