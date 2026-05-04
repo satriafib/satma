@@ -68,6 +68,46 @@ export default function WeddingInvitation() {
   
   const [phase, setPhase] = useState('intro'); // intro | profile | main
   const [selectedProfile, setSelectedProfile] = useState(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const favoriteMoments = [
+    { img: '/pre1.jpg', title: 'Eksklusif', badge: 'Eksklusif', badgeColor: 'bg-red-500' },
+    { img: '/pre2.jpg', title: 'Premium 👑', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
+    { img: '/pre3.jpg', title: 'Top 10', badge: 'Top 10', badgeColor: 'bg-red-500' },
+    { img: '/pre4.jpg', title: 'Premium 👑', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
+    { img: '/pre5.jpg', title: 'Our Favorite', badge: 'Our Favorite', badgeColor: 'bg-red-500' },
+    { img: '/pre6.jpg', title: 'Eksklusif 10', badge: 'Eksklusif 10', badgeColor: 'bg-red-500' },
+    { img: '/pre7.jpg', title: 'Top 5', badge: 'Top 5', badgeColor: 'bg-red-500' },
+    { img: '/pre8.jpg', title: 'Top 3', badge: 'Top 3', badgeColor: 'bg-red-700' },
+    { img: '/pre9.jpg', title: 'Top 2', badge: 'Top 2', badgeColor: 'bg-pink-700' },
+    { img: '/pre10.jpg', title: 'Top 1', badge: 'Top 1', badgeColor: 'bg-pink-500' },
+  ];
+
+  const openLightbox = (index) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => setLightboxOpen(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (!lightboxOpen) return;
+      if (event.key === 'Escape') {
+        closeLightbox();
+      }
+      if (event.key === 'ArrowLeft') {
+        setLightboxIndex((prev) => (prev - 1 + favoriteMoments.length) % favoriteMoments.length);
+      }
+      if (event.key === 'ArrowRight') {
+        setLightboxIndex((prev) => (prev + 1) % favoriteMoments.length);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, favoriteMoments.length]);
 
 // Slideshow effect
 // useEffect(() => {
@@ -304,39 +344,6 @@ useEffect(() => {
   // Cleanup interval saat komponen unmount
   return () => clearInterval(interval);
 }, []); // Dependency array kosong agar hanya jalankan sekali
-
-//Galeri Gambar
-const galleryItems = [
-  { img: '/pre1.jpg', title: '1'},
-  { img: '/pre2.jpg', title: '2'},
-  { img: '/pre3.jpg', title: '3'},
-  { img: '/pre4.jpg', title: '4'},
-  { img: '/pre5.jpg', title: '5'},
-  { img: '/pre6.jpg', title: '6'},
-  { img: '/pre7.jpg', title: '7'},
-  { img: '/pre8.jpg', title: '8'},
-  { img: '/pre9.jpg', title: '9'},
-  { img: '/pre10.jpg', title: '10'},
-];
-
-const [galleryOpen, setGalleryOpen] = useState(false);
-const [currentIndex, setCurrentIndex] = useState(0);
-
-const openGallery = (index) => {
-  setCurrentIndex(index);
-  setGalleryOpen(true);
-};
-
-const closeGallery = () => setGalleryOpen(false);
-
-const prevImage = () => {
-  setCurrentIndex((prev) => (prev - 1 + galleryItems.length) % galleryItems.length);
-};
-
-const nextImage = () => {
-  setCurrentIndex((prev) => (prev + 1) % galleryItems.length);
-};
-
 
 // Ambil semua wish saat pertama load
 // useEffect(() => {
@@ -1043,21 +1050,10 @@ const nextImage = () => {
     </h3>
 
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-      {[
-        { img: '/pre1.jpg', badge: 'Eksklusif', badgeColor: 'bg-red-500' },
-        { img: '/pre2.jpg', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
-        { img: '/pre3.jpg', badge: 'Top 10', badgeColor: 'bg-red-500' },
-        { img: '/pre4.jpg', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
-        { img: '/pre5.jpg', badge: 'Our Favorite', badgeColor: 'bg-red-500' },
-        { img: '/pre6.jpg', badge: 'Eksklusif 10', badgeColor: 'bg-red-500' },
-        { img: '/pre7.jpg', badge: 'Top 5', badgeColor: 'bg-red-500' },
-        { img: '/pre8.jpg', badge: 'Top 3', badgeColor: 'bg-red-700' },
-        { img: '/pre9.jpg', badge: 'Top 2', badgeColor: 'bg-pink-700' },
-        { img: '/pre10.jpg', badge: 'Top 1', badgeColor: 'bg-pink-500' },
-      ].map((item, idx) => (
+      {favoriteMoments.map((item, idx) => (
         <motion.div
           key={idx}
-          onClick={() => openGallery(idx)}
+          onClick={() => openLightbox(idx)}
           className="relative rounded-xl overflow-hidden shadow-xl group cursor-pointer bg-zinc-900/40 backdrop-blur-md perspective-1000"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1101,45 +1097,88 @@ const nextImage = () => {
 </section>
 
 <AnimatePresence>
-  {galleryOpen && (
+  {lightboxOpen && (
     <motion.div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      onClick={closeLightbox}
     >
-      <div className="relative max-w-5xl w-full">
+      <motion.div
+        className="relative max-w-5xl w-full"
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        onClick={(event) => event.stopPropagation()}
+      >
         <button
-          onClick={closeGallery}
-          className="absolute top-4 right-4 text-white text-2xl"
+          onClick={closeLightbox}
+          className="absolute top-4 right-4 z-20 rounded-full bg-white/10 px-3 py-2 text-xl font-bold text-white hover:bg-white/20"
         >
           ×
         </button>
 
         <img
-          src={galleryItems[currentIndex].img}
-          alt={galleryItems[currentIndex].title}
-          className="w-full max-h-[80vh] object-contain rounded-xl"
+          src={favoriteMoments[lightboxIndex].img}
+          alt={favoriteMoments[lightboxIndex].title}
+          className="w-full max-h-[80vh] object-contain rounded-3xl shadow-2xl"
         />
 
-        <div className="mt-4 flex justify-between gap-4">
-          <button
-            onClick={prevImage}
-            className="rounded-full bg-white/10 px-4 py-2 text-white hover:bg-white/20"
-          >
-            Previous
-          </button>
-          <button
-            onClick={nextImage}
-            className="rounded-full bg-white/10 px-4 py-2 text-white hover:bg-white/20"
-          >
-            Next
-          </button>
+        <div className="mt-4 flex flex-col gap-4">
+          <div className="flex items-center justify-between gap-3 text-white">
+            <button
+              onClick={(event) => {
+                event.stopPropagation();
+                setLightboxIndex((prev) => (prev - 1 + favoriteMoments.length) % favoriteMoments.length);
+              }}
+              className="rounded-full bg-white/10 px-4 py-3 text-sm font-semibold hover:bg-white/20"
+            >
+              Previous
+            </button>
+
+            <span className="text-sm text-gray-300">
+              {favoriteMoments[lightboxIndex].title}
+            </span>
+
+            <button
+              onClick={(event) => {
+                event.stopPropagation();
+                setLightboxIndex((prev) => (prev + 1) % favoriteMoments.length);
+              }}
+              className="rounded-full bg-white/10 px-4 py-3 text-sm font-semibold hover:bg-white/20"
+            >
+              Next
+            </button>
+          </div>
+
+          <div className="flex gap-2 overflow-x-auto py-2">
+            {favoriteMoments.map((thumb, thumbIdx) => (
+              <button
+                key={thumb.img}
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setLightboxIndex(thumbIdx);
+                }}
+                className={`min-w-[5rem] h-20 overflow-hidden rounded-2xl border-2 ${
+                  thumbIdx === lightboxIndex ? 'border-white' : 'border-white/20'
+                } transition-all duration-200 focus:outline-none`}
+              >
+                <img
+                  src={thumb.img}
+                  alt={thumb.title}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   )}
 </AnimatePresence>
+
 {/* section 8 
 <section className="bg-black text-white py-16 px-6 md:px-20">
   <motion.div
@@ -1240,7 +1279,18 @@ const nextImage = () => {
     </p>
   </motion.div>
 </section>
-      
+
+
+
+
+
+
+
+
+
+
+
+
         {showIntro && (
           <motion.div
             key="intro"
