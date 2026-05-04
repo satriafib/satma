@@ -72,16 +72,16 @@ export default function WeddingInvitation() {
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const favoriteMoments = [
-    { img: '/pre1.jpg', title: 'Eksklusif', badge: 'Eksklusif', badgeColor: 'bg-red-500' },
-    { img: '/pre2.jpg', title: 'Premium 👑', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
-    { img: '/pre3.jpg', title: 'Top 10', badge: 'Top 10', badgeColor: 'bg-red-500' },
-    { img: '/pre4.jpg', title: 'Premium 👑', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
-    { img: '/pre5.jpg', title: 'Our Favorite', badge: 'Our Favorite', badgeColor: 'bg-red-500' },
-    { img: '/pre6.jpg', title: 'Eksklusif 10', badge: 'Eksklusif 10', badgeColor: 'bg-red-500' },
-    { img: '/pre7.jpg', title: 'Top 5', badge: 'Top 5', badgeColor: 'bg-red-500' },
-    { img: '/pre8.jpg', title: 'Top 3', badge: 'Top 3', badgeColor: 'bg-red-700' },
-    { img: '/pre9.jpg', title: 'Top 2', badge: 'Top 2', badgeColor: 'bg-pink-700' },
-    { img: '/pre10.jpg', title: 'Top 1', badge: 'Top 1', badgeColor: 'bg-pink-500' },
+    { img: '/pre1.jpg', title: '', badge: 'Eksklusif', badgeColor: 'bg-red-500' },
+    { img: '/pre2.jpg', title: '', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
+    { img: '/pre3.jpg', title: '', badge: 'Top 10', badgeColor: 'bg-red-500' },
+    { img: '/pre4.jpg', title: '', badge: 'Premium 👑', badgeColor: 'bg-red-500' },
+    { img: '/pre5.jpg', title: '', badge: 'Our Favorite', badgeColor: 'bg-red-500' },
+    { img: '/pre6.jpg', title: '', badge: 'Eksklusif 10', badgeColor: 'bg-red-500' },
+    { img: '/pre7.jpg', title: '', badge: 'Top 5', badgeColor: 'bg-red-500' },
+    { img: '/pre8.jpg', title: '', badge: 'Top 3', badgeColor: 'bg-red-700' },
+    { img: '/pre9.jpg', title: '', badge: 'Top 2', badgeColor: 'bg-pink-700' },
+    { img: '/pre10.jpg', title: '', badge: 'Top 1', badgeColor: 'bg-pink-500' },
   ];
 
   const openLightbox = (index) => {
