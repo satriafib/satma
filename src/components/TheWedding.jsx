@@ -687,7 +687,7 @@ useEffect(() => {
           transition={{ delay: 0.4, duration: 0.8 }}
           viewport={{ once: false }}
         >
-          Putri dari <span className='font-semibold text-yellow-500'>Bapak Sutrisman</span> & <span className='font-semibold text-yellow-500'>Ibu Dewi</span>
+          Putri dari <span className='font-semibold text-yellow-500'>Bapak Sutrisman</span> & <span className='font-semibold text-yellow-500'>Ibu Dewi Supraptiningsih</span>
         </motion.p>
       </motion.div>
 
