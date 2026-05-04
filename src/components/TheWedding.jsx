@@ -580,7 +580,7 @@ useEffect(() => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 0.4 }}
     >
-      <p className="uppercase text-red-500 text-sm font-semibold tracking-wide">Documenter</p>
+      <p className="uppercase text-red-500 text-sm font-semibold tracking-wide">Romantic</p>
       <h2 className="text-3xl md:text-4xl font-extrabold leading-snug">Satria & Risma: Sebelum Hari H</h2>
 
       <div className="flex items-center gap-4 text-sm text-white/80">
